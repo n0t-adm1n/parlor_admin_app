@@ -8,10 +8,18 @@ import 'package:share_plus/share_plus.dart';
 /// Service responsible for exporting Firestore booking data as a CSV file
 /// and sharing it via the native share sheet.
 class ExportService {
-  final FirebaseFirestore _firestore;
+  /// Optional override for testing. When null, [FirebaseFirestore.instance]
+  /// is accessed lazily (only when [exportBookingsToCsv] is called), so the
+  /// app won't crash if Firebase hasn't been initialized yet.
+  final FirebaseFirestore? _firestoreOverride;
 
   ExportService({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+      : _firestoreOverride = firestore;
+
+  /// Returns the Firestore instance — lazily resolved so it's only accessed
+  /// when an export is actually triggered, not at widget-build time.
+  FirebaseFirestore get _firestore =>
+      _firestoreOverride ?? FirebaseFirestore.instance;
 
   /// Fetches all documents from the 'bookings' collection, converts them to
   /// CSV format, writes the result to a temporary file, and triggers the
