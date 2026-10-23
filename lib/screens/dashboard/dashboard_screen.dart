@@ -126,6 +126,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final bottomPadding =
+        kBottomNavigationBarHeight + MediaQuery.of(context).padding.bottom + 16;
+
     return Scaffold(
       backgroundColor: const Color(0xFF0F0B1E),
       floatingActionButton: FloatingActionButton.extended(
@@ -146,7 +149,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         elevation: 6,
       ),
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         slivers: [
           // ── App Bar ────────────────────────────────────────────────────────
           SliverAppBar(
@@ -234,7 +237,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
           // ── Recent Transactions ────────────────────────────────────────────
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(16, 24, 16, 100),
+            padding: EdgeInsets.fromLTRB(16, 24, 16, bottomPadding),
             sliver: SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

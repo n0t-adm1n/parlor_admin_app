@@ -43,74 +43,89 @@ class TransactionTile extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-        // Avatar with parlor initial
-        leading: CircleAvatar(
-          radius: 22,
-          backgroundColor: avatarColor.withValues(alpha: 0.18),
-          child: Text(
-            parlorName.isNotEmpty ? parlorName[0].toUpperCase() : '?',
-            style: TextStyle(
-              color: avatarColor,
-              fontWeight: FontWeight.w800,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        // Parlor name + service
-        title: Text(
-          parlorName,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
-        ),
-        subtitle: Text(
-          service,
-          style: const TextStyle(
-            color: Colors.white38,
-            fontSize: 12,
-          ),
-        ),
-        // Amount + status pill + date
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              amount,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 14,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // ── Avatar ──────────────────────────────────────────────────────────
+          CircleAvatar(
+            radius: 22,
+            backgroundColor: avatarColor.withValues(alpha: 0.18),
+            child: Text(
+              parlorName.isNotEmpty ? parlorName[0].toUpperCase() : '?',
+              style: TextStyle(
+                color: avatarColor,
+                fontWeight: FontWeight.w800,
+                fontSize: 16,
               ),
             ),
-            const SizedBox(height: 4),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-              decoration: BoxDecoration(
-                color: _statusColor.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Text(
-                status,
-                style: TextStyle(
-                  color: _statusColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10,
+          ),
+          const SizedBox(width: 12),
+
+          // ── Parlor name + service ────────────────────────────────────────────
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  parlorName,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  service,
+                  style: const TextStyle(
+                    color: Colors.white38,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+
+          // ── Amount + status pill + date ──────────────────────────────────────
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                amount,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
                 ),
               ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              date,
-              style: const TextStyle(color: Colors.white24, fontSize: 10),
-            ),
-          ],
-        ),
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                decoration: BoxDecoration(
+                  color: _statusColor.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  status,
+                  style: TextStyle(
+                    color: _statusColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 10,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                date,
+                style: const TextStyle(color: Colors.white24, fontSize: 10),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

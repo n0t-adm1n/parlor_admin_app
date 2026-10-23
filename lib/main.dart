@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:admin_app/screens/layout/mobile_admin_layout.dart';
-// TODO: Uncomment after running `flutterfire configure` to generate firebase_options.dart
-// import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   // 1. Ensure the Flutter engine is fully initialized before calling native code
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 2. TODO: Uncomment after adding google-services.json and running `flutterfire configure`
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  // 2. Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   // 3. Run the app
   runApp(const AdminApp());
